@@ -19,18 +19,8 @@ describe('App (router) tests', () => {
     mock.onGet('/versions.json').reply(200, {
       bootstrap: '5.1.3',
       hello: 'world',
-      featureFlags: 'mydobie/featureFlags#npmbuild2.3.0',
     });
-    store = mockStore({
-      dinos: {
-        data: [
-          { id: 'a', text: 'MyDino', selected: true },
-          { id: 'b', text: 'MyOtherDino', selected: true },
-          { id: 'c', text: 'MyThirdDino', selected: false },
-        ],
-      },
-      FeatureFlags: { features: [], persist: false },
-    });
+    store = mockStore({});
   });
   test('Is accessible', async () => {
     await act(async () => {
@@ -63,16 +53,7 @@ describe('App (router) tests', () => {
 describe('App renders correctly', () => {
   let store: MockStoreEnhanced<unknown, unknown>;
   beforeEach(() => {
-    store = mockStore({
-      dinos: {
-        data: [
-          { id: 'a', text: 'MyDino', selected: true },
-          { id: 'b', text: 'MyOtherDino', selected: true },
-          { id: 'c', text: 'MyThirdDino', selected: false },
-        ],
-      },
-      FeatureFlags: { features: [], persist: false },
-    });
+    store = mockStore({});
   });
   test('App is accessible', async () => {
     await act(async () => {

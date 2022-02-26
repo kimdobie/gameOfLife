@@ -19,11 +19,8 @@ describe('Version tests', () => {
     mock.onGet('/versions.json').reply(200, {
       bootstrap: '5.1.3',
       hello: 'world',
-      featureFlags: 'mydobie/featureFlags#npmbuild2.3.0',
     });
-    store = mockStore({
-      FeatureFlags: { features: [], persist: false },
-    });
+    store = mockStore({});
   });
   test('Is accessible', async () => {
     await act(async () => {

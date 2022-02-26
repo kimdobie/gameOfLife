@@ -10,7 +10,6 @@ const getVersions = () => {
   const versions = {
     bootstrap: packageJson.dependencies.bootstrap,
     hello: 'world',
-    featureFlags: packageJson.dependencies['feature-flags'],
   };
 
   fs.writeFileSync(
