@@ -43,16 +43,45 @@ export const nextGrid = (grid: GridType): GridType => {
   return newGrid;
 };
 
-export const emptyGrid = (rows: number, cols: number): GridType => {
+const emptyRow = (cols: number): LifeStatusType[] => {
   const row: LifeStatusType[] = [];
   for (let i = 0; i < cols; i++) {
     row.push(0);
   }
+  return row;
+};
+
+export const emptyGrid = (rows: number, cols: number): GridType => {
+  const row: LifeStatusType[] = emptyRow(cols);
+
   const grid = [];
   for (let i = 0; i < rows; i++) {
     grid.push([...row]);
   }
   return grid;
+};
+
+export const changeGridSize = (
+  grid: GridType,
+  rows: number,
+  cols: number
+): GridType => {
+  let newGrid: GridType = [...grid];
+  if (rows > grid.length) {
+    for (let i = 0; i < rows - grid.length; i++) {
+      newGrid.push([...emptyRow(cols)]);
+    }
+  } else if (rows < grid.length) {
+    newGrid = newGrid.slice(0, rows);
+  }
+
+  if (cols > newGrid[0].length) {
+    newGrid = newGrid.map((row) => [...row, ...emptyRow(cols - row.length)]);
+  } else if (cols < newGrid[0].length) {
+    newGrid = newGrid.map((row) => row.slice(0, cols));
+  }
+
+  return newGrid;
 };
 
 export const blinkerGrid = (rows: number, cols: number): GridType => {

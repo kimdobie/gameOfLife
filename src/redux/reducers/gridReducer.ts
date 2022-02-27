@@ -3,7 +3,7 @@ Reducers update the redux store.
 */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { nextGrid, randomGrid } from '../../js/gridHelpers';
+import { nextGrid, randomGrid, changeGridSize } from '../../js/gridHelpers';
 
 // *** Data types ***
 // export type SampleItemType = string;
@@ -22,7 +22,7 @@ export type GateStateType = {
 // *** Initial state  ***
 // exported ONLY for testing purposes
 export const initialState: GateStateType = {
-  grid: randomGrid(50, 50),
+  grid: randomGrid(20, 50),
   generation: 1,
   gridCellSize: 10,
   genTimeSeconds: 0.25,
@@ -33,10 +33,10 @@ export const SampleSlice = createSlice({
   name: 'sampleSlice', // unique name - not used in the application
   initialState,
   reducers: {
-    updateGrid: (state: GateStateType, action: PayloadAction<GridType>) => {
-      state.grid = action.payload;
-      state.generation = 1;
-    },
+    // updateGrid: (state: GateStateType, action: PayloadAction<GridType>) => {
+    //   state.grid = action.payload;
+    //   state.generation = 1;
+    // },
     nextGeneration: (state: GateStateType) => {
       state.grid = nextGrid(state.grid);
       state.generation += 1;
@@ -50,6 +50,17 @@ export const SampleSlice = createSlice({
       state.grid[action.payload.row][action.payload.column] = newCellState;
     },
 
+    resizeGrid: (
+      state: GateStateType,
+      action: PayloadAction<{ rows: number; columns: number }>
+    ) => {
+      state.grid = changeGridSize(
+        [...state.grid],
+        action.payload.rows,
+        action.payload.columns
+      );
+    },
+
     // NOTE this resets the state to the initial state
     // normally this isn't used in application, but can be helpful during testing
     resetStore: () => initialState,
@@ -57,7 +68,7 @@ export const SampleSlice = createSlice({
 });
 
 // Reducers that can be called in the application
-export const { updateGrid, nextGeneration, resetStore, flipCell } =
+export const { nextGeneration, resetStore, flipCell, resizeGrid } =
   SampleSlice.actions;
 
 // To be imported in the index reducer file
