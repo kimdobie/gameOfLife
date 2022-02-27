@@ -20,3 +20,9 @@ export const useGetCols = (): number =>
 
 export const useGetGeneration = (): number =>
   useSelector((state: RootState) => state.grid.generation);
+
+export const useGetGridCellSize = (): number =>
+  useSelector((state: RootState) => state.grid.gridCellSize);
+
+export const useGetGenTimeSeconds = (): number =>
+  useSelector((state: RootState) => state.grid.genTimeSeconds);

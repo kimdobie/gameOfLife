@@ -12,13 +12,20 @@ export type GridRowType = LifeStatusType[];
 export type GridType = GridRowType[]; // 0 is dead, 1 is alive, 2 is newborn
 
 // *** Type of the store ***
-export type GateStateType = { grid: GridType; generation: number };
+export type GateStateType = {
+  grid: GridType;
+  generation: number;
+  gridCellSize: number;
+  genTimeSeconds: number;
+};
 
 // *** Initial state  ***
 // exported ONLY for testing purposes
 export const initialState: GateStateType = {
   grid: randomGrid(50, 50),
   generation: 1,
+  gridCellSize: 10,
+  genTimeSeconds: 0.25,
 };
 
 /* *************** Slice ***************** */

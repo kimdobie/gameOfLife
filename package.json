@@ -1,10 +1,10 @@
 {
-  "name": "simple-react-redux-app",
+  "name": "game-of-life",
   "homepage": "./",
   "description": "",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "license": "MIT",
-  "repository": "https://github.com/mydobie/simple-react-redux-app",
+  "repository": "https://github.com/kimdobie/gameOfLife",
   "engines": {
     "node": "14"
   },

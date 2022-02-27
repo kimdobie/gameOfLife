@@ -9,7 +9,6 @@ const Router =
 
 import AppNavBar from './AppNavBar';
 import AppRoutes from './AppRoutes';
-import SetAxios from './components/SetAxios';
 
 import './scss/index.scss';
 
@@ -36,7 +35,6 @@ const App = (): ReactElement => {
   return (
     <>
       <Router basename={basename}>
-        <SetAxios />
         <Header />
         <AppNavBar />
         <Container>

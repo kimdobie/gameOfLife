@@ -52,8 +52,6 @@ export const emptyGrid = (rows: number, cols: number): GridType => {
   for (let i = 0; i < rows; i++) {
     grid.push([...row]);
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // // @ts-ignore
   return grid;
 };
 

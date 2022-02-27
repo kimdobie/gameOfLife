@@ -7,15 +7,22 @@ import {
   useGetCols,
   useGetRows,
   useGetGrid,
+  useGetGridCellSize,
 } from '../redux/selectors/gridSelector';
 import { GridRowType, LifeStatusType } from '../redux/reducers/gridReducer';
 
-type GridType = { rows: number; columns: number };
+type GridType = { rows: number; columns: number; size: number };
 
 const GridBox = styled.div<GridType>`
   display: grid;
-  grid-template-columns: repeat(${(props) => props.columns}, 10px);
-  grid-template-rows: repeat(${(props) => props.rows}, 10px);
+  grid-template-columns: repeat(
+    ${(props) => props.columns},
+    ${(props) => props.size}px
+  );
+  grid-template-rows: repeat(
+    ${(props) => props.rows},
+    ${(props) => props.size}px
+  );
   grid-gap: 1px;
 `;
 
@@ -42,10 +49,11 @@ const Grid = (): ReactElement => {
   const rows = useGetRows();
   const columns = useGetCols();
   const grid = useGetGrid();
+  const size = useGetGridCellSize();
 
   return (
     <GridContainer>
-      <GridBox rows={rows} columns={columns}>
+      <GridBox rows={rows} columns={columns} size={size}>
         {grid.map((row, rowindex) => GridRows(row, rowindex))}
       </GridBox>
     </GridContainer>

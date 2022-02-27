@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { flipCell } from '../redux/reducers/gridReducer';
+import { useGetGridCellSize } from '../redux/selectors/gridSelector';
 
 // ** Main component type */
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -10,6 +11,9 @@ type GridCellType = {
   isNewborn?: boolean;
   row?: number;
   column?: number;
+};
+type GridButtonType = {
+  size?: number;
 };
 
 const GridBox = styled.div<GridCellType>`
@@ -24,10 +28,10 @@ const GridBox = styled.div<GridCellType>`
   }};
   position: relative;
 `;
-const Button = styled.button`
+const Button = styled.button<GridButtonType>`
   border: none;
-  width: 10px;
-  height: 10px;
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
   position: absolute;
   background: none;
 `;
@@ -41,9 +45,11 @@ const GridCell = ({
   column = 0,
 }: GridCellType): ReactElement => {
   const dispatch = useDispatch();
+  const size = useGetGridCellSize();
+
   return (
     <GridBox isAlive={isAlive} isNewborn={isNewborn}>
-      <Button onClick={() => dispatch(flipCell({ row, column }))} />
+      <Button onClick={() => dispatch(flipCell({ row, column }))} size={size} />
     </GridBox>
   );
 };
