@@ -3,13 +3,14 @@
 // modified or removed from a real project
 
 import React, { ReactElement } from 'react';
-import GridGenerationButtons from './GridGenerationButtons';
 import GridResizeGrid from './GridResizeGrid';
+import GridChangeGridType from './GridChangeGridType';
 // *** Main component ***
 const GridController = (): ReactElement => (
   <div>
-    <GridGenerationButtons />
     <GridResizeGrid />
+    <hr />
+    <GridChangeGridType />
   </div>
 );
 

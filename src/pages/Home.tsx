@@ -13,6 +13,8 @@ const Home = (): ReactElement => (
   <Row data-testid='homePageContainer'>
     <Col>
       <GridController />
+    </Col>
+    <Col sm={{ order: 'first' }}>
       <Grid />
     </Col>
   </Row>

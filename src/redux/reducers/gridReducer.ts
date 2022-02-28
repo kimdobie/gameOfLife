@@ -3,10 +3,10 @@ Reducers update the redux store.
 */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { nextGrid, randomGrid, changeGridSize } from '../../js/gridHelpers';
+import { nextGrid, changeGridSize } from '../../js/gridHelpers';
+import { emptyGrid, gliderGrid, randomGrid } from '../../js/gridTypes';
 
 // *** Data types ***
-// export type SampleItemType = string;
 export type LifeStatusType = 0 | 1 | 2;
 export type GridRowType = LifeStatusType[];
 export type GridType = GridRowType[]; // 0 is dead, 1 is alive, 2 is newborn
@@ -22,7 +22,7 @@ export type GateStateType = {
 // *** Initial state  ***
 // exported ONLY for testing purposes
 export const initialState: GateStateType = {
-  grid: randomGrid(20, 50),
+  grid: emptyGrid(25, 50),
   generation: 1,
   gridCellSize: 10,
   genTimeSeconds: 0.25,
@@ -61,6 +61,21 @@ export const SampleSlice = createSlice({
       );
     },
 
+    createEmptyGrid: (state: GateStateType) => {
+      state.grid = emptyGrid(state.grid.length, state.grid[0].length);
+      state.generation = 1;
+    },
+
+    createRandomGrid: (state: GateStateType) => {
+      state.grid = randomGrid(state.grid.length, state.grid[0].length);
+      state.generation = 1;
+    },
+
+    createGliderGrid: (state: GateStateType) => {
+      state.grid = gliderGrid(state.grid.length, state.grid[0].length);
+      state.generation = 1;
+    },
+
     // NOTE this resets the state to the initial state
     // normally this isn't used in application, but can be helpful during testing
     resetStore: () => initialState,
@@ -68,8 +83,15 @@ export const SampleSlice = createSlice({
 });
 
 // Reducers that can be called in the application
-export const { nextGeneration, resetStore, flipCell, resizeGrid } =
-  SampleSlice.actions;
+export const {
+  nextGeneration,
+  resetStore,
+  flipCell,
+  resizeGrid,
+  createEmptyGrid,
+  createGliderGrid,
+  createRandomGrid,
+} = SampleSlice.actions;
 
 // To be imported in the index reducer file
 export default SampleSlice.reducer;

@@ -16,7 +16,7 @@ const Header = (): ReactElement => (
   <header>
     <Card bg='dark' text='white'>
       <Card.Body>
-        <Card.Title>Sample redux application</Card.Title>
+        <Card.Title>Simple Game of Life Simulation</Card.Title>
       </Card.Body>
     </Card>
   </header>

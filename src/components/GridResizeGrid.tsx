@@ -6,8 +6,10 @@ import { resizeGrid } from '../redux/reducers/gridReducer';
 import { useGetCols, useGetRows } from '../redux/selectors/gridSelector';
 
 const FloatingLabelStyled = styled(FloatingLabel)`
-  width: 75px;
   display: inline-block;
+  width: 75px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 `;
 
 const GridResizeGrid = (): ReactElement => {
@@ -24,22 +26,14 @@ const GridResizeGrid = (): ReactElement => {
   return (
     <>
       <div>
-        <FloatingLabelStyled
-          controlId='floatingInputRows'
-          label='Rows'
-          style={{ width: '75px' }}
-        >
+        <FloatingLabelStyled controlId='floatingInputRows' label='Rows'>
           <Form.Control
             type='number'
             value={rows}
             onChange={(e) => setRows(parseInt(e.target.value))}
           />
         </FloatingLabelStyled>
-        <FloatingLabelStyled
-          controlId='floatingInputCols'
-          label='Columns'
-          style={{ width: '75px' }}
-        >
+        <FloatingLabelStyled controlId='floatingInputCols' label='Columns'>
           <Form.Control
             type='number'
             value={cols}

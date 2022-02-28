@@ -10,6 +10,7 @@ import {
   useGetGridCellSize,
 } from '../redux/selectors/gridSelector';
 import { GridRowType, LifeStatusType } from '../redux/reducers/gridReducer';
+import GridGenerationButtons from './GridGenerationButtons';
 
 type GridType = { rows: number; columns: number; size: number };
 
@@ -52,11 +53,14 @@ const Grid = (): ReactElement => {
   const size = useGetGridCellSize();
 
   return (
-    <GridContainer>
-      <GridBox rows={rows} columns={columns} size={size}>
-        {grid.map((row, rowindex) => GridRows(row, rowindex))}
-      </GridBox>
-    </GridContainer>
+    <>
+      <GridGenerationButtons />
+      <GridContainer>
+        <GridBox rows={rows} columns={columns} size={size}>
+          {grid.map((row, rowindex) => GridRows(row, rowindex))}
+        </GridBox>
+      </GridContainer>
+    </>
   );
 };
 
