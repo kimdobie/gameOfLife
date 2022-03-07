@@ -41,6 +41,7 @@ const GridRows = (row: GridRowType, rowindex: number): ReactElement[] =>
       isNewborn={lifeStatus > 1}
       row={rowindex}
       column={colindex}
+      testid='GridCell'
     />
   ));
 

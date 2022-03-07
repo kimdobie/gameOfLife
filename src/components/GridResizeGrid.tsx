@@ -16,11 +16,13 @@ const GridResizeGrid = (): ReactElement => {
   const dispatch = useDispatch();
   const rowsState = useGetRows();
   const colsState = useGetCols();
-  const [rows, setRows] = useState<number>(rowsState);
-  const [cols, setColumns] = useState<number>(colsState);
+  const [rows, setRows] = useState<number | ''>(rowsState);
+  const [cols, setColumns] = useState<number | ''>(colsState);
 
   const handleGridSizeChange = (): void => {
-    dispatch(resizeGrid({ rows, columns: cols }));
+    if (rows && cols) {
+      dispatch(resizeGrid({ rows, columns: cols }));
+    }
   };
 
   return (
@@ -30,14 +32,16 @@ const GridResizeGrid = (): ReactElement => {
           <Form.Control
             type='number'
             value={rows}
-            onChange={(e) => setRows(parseInt(e.target.value))}
+            onChange={(e) => setRows(parseInt(e.target.value, 10) || '')}
+            data-testid='floatingInputRows'
           />
         </FloatingLabelStyled>
         <FloatingLabelStyled controlId='floatingInputCols' label='Columns'>
           <Form.Control
             type='number'
             value={cols}
-            onChange={(e) => setColumns(parseInt(e.target.value))}
+            onChange={(e) => setColumns(parseInt(e.target.value, 10) || '')}
+            data-testid='floatingInputCols'
           />
         </FloatingLabelStyled>
         <Button variant='secondary' onClick={handleGridSizeChange}>

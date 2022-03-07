@@ -10,9 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
-    "axios": "^0.26.0",
     "bootstrap": "5.1.3",
-    "immer": "^9.0.12",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-dom": "^17.0.2",
@@ -27,6 +25,7 @@
     "Sass is pinned to a lower version otherwise it breaks on the bootstrap build"
   ],
   "devDependencies": {
+    "@testing-library/dom": "^8.11.3",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/react-hooks": "^7.0.2",
@@ -36,7 +35,6 @@
     "@types/styled-components": "^5.1.23",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
-    "axios-mock-adapter": "^1.20.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-config-prettier": "^8.4.0",
@@ -78,7 +76,7 @@
     "build": "npm run d && npm run test && npm run npmAudit && npm run build:ci",
     "build:ci": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
     "build:hash": "REACT_APP_USE_HASH_ROUTER=true npm run build:ci",
-    "test": "react-scripts test --coverage --passWithNoTests --testPathIgnorePatterns /helpers --watchAll=false ",
+    "test": "react-scripts test --coverage --passWithNoTests --testPathIgnorePatterns /__tests__/__fixtures__/ --watchAll=false ",
     "test:watch": "react-scripts test ",
     "test:update": "npm run test -- -u",
     "// ----------------------------------------------------------2": "",
@@ -165,7 +163,9 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/index.tsx",
-      "!src/__test_fixtures__/**/*.*"
+      "!src/redux/store.ts",
+      "!src/__test_fixtures__/**/*.*",
+      "!src/__tests__/__fixtures__/**/*.*"
     ],
     "coverageReporters": [
       "html",

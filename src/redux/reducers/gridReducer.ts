@@ -29,8 +29,8 @@ export const initialState: GateStateType = {
 };
 
 /* *************** Slice ***************** */
-export const SampleSlice = createSlice({
-  name: 'sampleSlice', // unique name - not used in the application
+export const GridSlice = createSlice({
+  name: 'gridSlice', // unique name - not used in the application
   initialState,
   reducers: {
     // updateGrid: (state: GateStateType, action: PayloadAction<GridType>) => {
@@ -78,20 +78,20 @@ export const SampleSlice = createSlice({
 
     // NOTE this resets the state to the initial state
     // normally this isn't used in application, but can be helpful during testing
-    resetStore: () => initialState,
+    // resetStore: () => initialState,
   },
 });
 
 // Reducers that can be called in the application
 export const {
   nextGeneration,
-  resetStore,
+  //resetStore,
   flipCell,
   resizeGrid,
   createEmptyGrid,
   createGliderGrid,
   createRandomGrid,
-} = SampleSlice.actions;
+} = GridSlice.actions;
 
 // To be imported in the index reducer file
-export default SampleSlice.reducer;
+export default GridSlice.reducer;

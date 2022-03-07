@@ -11,6 +11,7 @@ type GridCellType = {
   isNewborn?: boolean;
   row?: number;
   column?: number;
+  testid?: string;
 };
 type GridButtonType = {
   size?: number;
@@ -43,13 +44,20 @@ const GridCell = ({
   isNewborn = false,
   row = 0,
   column = 0,
+  testid,
 }: GridCellType): ReactElement => {
   const dispatch = useDispatch();
   const size = useGetGridCellSize();
 
   return (
-    <GridBox isAlive={isAlive} isNewborn={isNewborn}>
-      <Button onClick={() => dispatch(flipCell({ row, column }))} size={size} />
+    <GridBox isAlive={isAlive} isNewborn={isNewborn} data-testid={testid}>
+      <Button
+        onClick={() => {
+          dispatch(flipCell({ row, column }));
+        }}
+        size={size}
+        aria-label='Update cell'
+      />
     </GridBox>
   );
 };
