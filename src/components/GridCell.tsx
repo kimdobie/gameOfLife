@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import { flipCell } from '../redux/reducers/gridReducer';
 import { useGetGridCellSize } from '../redux/selectors/gridSelector';
 
-// ** Main component type */
-// eslint-disable-next-line @typescript-eslint/ban-types
 type GridCellType = {
   isAlive?: boolean;
   isNewborn?: boolean;

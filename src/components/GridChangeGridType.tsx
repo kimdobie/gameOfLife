@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-// import styled from 'styled-components';
+
 import {
   createEmptyGrid,
   createRandomGrid,

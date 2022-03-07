@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// NOTE This is a sample page and should either be
-// modified or removed from a real project
-
 import React, { ReactElement, useState } from 'react';
 import { Button, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';

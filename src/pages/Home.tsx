@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// NOTE This is a sample page and should either be
-// modified or removed from a real project
-
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
 

@@ -1,11 +1,7 @@
-// Page that shows the application name and version from package.json file
-// Along with the git commit.
-// Note this file should be used in most applications
-// Normally there isn't a need to modify it
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-const Version = (/* props */): ReactElement => (
+const Version = (): ReactElement => (
   <>
     <Row data-testid='versionPageContainer'>
       <Col>

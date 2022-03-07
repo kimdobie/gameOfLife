@@ -1,7 +1,3 @@
-/*
-Reducers update the redux store.
-*/
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { nextGrid, changeGridSize } from '../../js/gridHelpers';
 import { emptyGrid, gliderGrid, randomGrid } from '../../js/gridTypes';
@@ -33,10 +29,6 @@ export const GridSlice = createSlice({
   name: 'gridSlice', // unique name - not used in the application
   initialState,
   reducers: {
-    // updateGrid: (state: GateStateType, action: PayloadAction<GridType>) => {
-    //   state.grid = action.payload;
-    //   state.generation = 1;
-    // },
     nextGeneration: (state: GateStateType) => {
       state.grid = nextGrid(state.grid);
       state.generation += 1;
@@ -75,10 +67,6 @@ export const GridSlice = createSlice({
       state.grid = gliderGrid(state.grid.length, state.grid[0].length);
       state.generation = 1;
     },
-
-    // NOTE this resets the state to the initial state
-    // normally this isn't used in application, but can be helpful during testing
-    // resetStore: () => initialState,
   },
 });
 

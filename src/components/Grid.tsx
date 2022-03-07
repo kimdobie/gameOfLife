@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react';
-import {} from 'react-bootstrap';
 import styled from 'styled-components';
 import GridCell from './GridCell';
-//import { useDispatch } from 'react-redux';
+
 import {
   useGetCols,
   useGetRows,
