@@ -43,8 +43,10 @@ describe('<GridResizeGrid> tests', () => {
         <GridResizeGrid />
       </Provider>
     );
-    userEvent.type(screen.getByTestId('floatingInputRows'), '{backspace}55');
-    userEvent.type(screen.getByTestId('floatingInputCols'), '{backspace}66');
+    userEvent.clear(screen.getByTestId('floatingInputRows'));
+    userEvent.type(screen.getByTestId('floatingInputRows'), '55');
+    userEvent.clear(screen.getByTestId('floatingInputCols'));
+    userEvent.type(screen.getByTestId('floatingInputCols'), '66');
     userEvent.click(screen.getByText('Change grid'));
     expect(store.getActions()).toHaveLength(1);
     expect(store.getActions()[0]).toEqual({

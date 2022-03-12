@@ -1,58 +1,52 @@
-import React, { ReactElement, useState } from 'react';
+/* eslint-disable no-console */
+import React, { ReactElement } from 'react';
 import { Button, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { nextGeneration } from '../redux/reducers/gridReducer';
-import {
-  useGetGenTimeSeconds,
-  useGetGeneration,
-} from '../redux/selectors/gridSelector';
+import { setRunning } from '../js/startGenerations';
+import { useGetIsRunning } from '../redux/selectors/gridSelector';
+
+import { useGetGeneration } from '../redux/selectors/gridSelector';
 
 // *** Main component ***
 const GridGenerationButtons = (): ReactElement => {
   const dispatch = useDispatch();
   const generation = useGetGeneration();
-  const genTimeSeconds = useGetGenTimeSeconds();
-
-  const [intervalId, setIntervalId] = useState<ReturnType<
-    typeof setInterval
-  > | null>(null);
-
-  const handleClick = (): void => {
-    dispatch(nextGeneration());
-  };
-  const handleStart = (): void => {
-    dispatch(nextGeneration());
-    const id: ReturnType<typeof setInterval> | null = setInterval(() => {
-      dispatch(nextGeneration());
-    }, genTimeSeconds * 1000);
-    setIntervalId(id);
-  };
-
-  const handleStop = (): void => {
-    if (intervalId) {
-      clearInterval(intervalId);
-    }
-    setIntervalId(null);
-  };
+  const isRunning = useGetIsRunning();
 
   return (
     <Row>
       <Col>
-        {intervalId === null ? (
-          <Button onClick={handleStart} variant='success'>
+        {!isRunning ? (
+          <Button
+            onClick={() => {
+              setRunning(true);
+              console.log('button pressed');
+            }}
+            variant='success'
+            data-testid='startButton'
+          >
             Start
           </Button>
         ) : (
-          <Button onClick={handleStop} variant='danger'>
+          <Button
+            onClick={() => setRunning(false)}
+            variant='danger'
+            data-testid='stopButton'
+          >
             Stop
           </Button>
         )}{' '}
-        {intervalId === null ? (
-          <Button onClick={handleClick} variant='primary'>
+        {!isRunning ? (
+          <Button
+            onClick={() => dispatch(nextGeneration())}
+            variant='primary'
+            data-testid='nextButton'
+          >
             Next
           </Button>
         ) : null}{' '}
-        Generation: {generation}
+        Generation: <span data-testid='generation'>{generation}</span>
       </Col>
     </Row>
   );

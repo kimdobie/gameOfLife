@@ -37,6 +37,8 @@ const Button = styled.button<GridButtonType>`
 
 // *** Main component ***
 
+type LifeType = 'dead' | 'alive' | 'newborn';
+
 const GridCell = ({
   isAlive = false,
   isNewborn = false,
@@ -47,8 +49,22 @@ const GridCell = ({
   const dispatch = useDispatch();
   const size = useGetGridCellSize();
 
+  const life = (): LifeType => {
+    if (!isAlive && !isNewborn) {
+      return 'dead';
+    }
+    return isNewborn ? 'newborn' : 'alive';
+  };
+
   return (
-    <GridBox isAlive={isAlive} isNewborn={isNewborn} data-testid={testid}>
+    <GridBox
+      isAlive={isAlive}
+      isNewborn={isNewborn}
+      data-testid={testid}
+      data-life={life()}
+      data-row={row}
+      data-column={column}
+    >
       <Button
         onClick={() => {
           dispatch(flipCell({ row, column }));

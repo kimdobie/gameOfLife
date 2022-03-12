@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState, store } from '../store';
 import { GridType } from '../reducers/gridReducer';
 
 export const useGetGrid = (): GridType =>
@@ -19,3 +19,8 @@ export const useGetGridCellSize = (): number =>
 
 export const useGetGenTimeSeconds = (): number =>
   useSelector((state: RootState) => state.grid.genTimeSeconds);
+
+export const genTimeSeconds = store.getState().grid.genTimeSeconds;
+
+export const useGetIsRunning = (): boolean =>
+  useSelector((state: RootState) => state.grid.isRunning);

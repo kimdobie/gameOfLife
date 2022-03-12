@@ -13,6 +13,7 @@ export type GateStateType = {
   generation: number;
   gridCellSize: number;
   genTimeSeconds: number;
+  isRunning: boolean;
 };
 
 // *** Initial state  ***
@@ -22,6 +23,7 @@ export const initialState: GateStateType = {
   generation: 1,
   gridCellSize: 10,
   genTimeSeconds: 0.25,
+  isRunning: false,
 };
 
 /* *************** Slice ***************** */
@@ -29,6 +31,12 @@ export const GridSlice = createSlice({
   name: 'gridSlice', // unique name - not used in the application
   initialState,
   reducers: {
+    startSimulation: (state: GateStateType) => {
+      state.isRunning = true;
+    },
+    stopSimulation: (state: GateStateType) => {
+      state.isRunning = false;
+    },
     nextGeneration: (state: GateStateType) => {
       state.grid = nextGrid(state.grid);
       state.generation += 1;
@@ -70,6 +78,26 @@ export const GridSlice = createSlice({
   },
 });
 
+// let intervalId: NodeJS.Timer | null = null;
+// /*** Side actions */
+// export const useSetIsRunning = (isRunning: boolean): void => {
+//   const dispatch = useDispatch();
+//   console.log('setIsRunning: ' + isRunning);
+//   if (isRunning) {
+//     console.log('setIsRunning: starting interval');
+//     dispatch(GridSlice.actions.nextGeneration());
+//     intervalId = setInterval(() => {
+//       console.log('INTERVAL');
+//       dispatch(GridSlice.actions.nextGeneration());
+//     }, 1000);
+//   } else {
+//     if (intervalId) {
+//       clearInterval(intervalId);
+//     }
+//     intervalId = null;
+//   }
+// };
+
 // Reducers that can be called in the application
 export const {
   nextGeneration,
@@ -79,6 +107,8 @@ export const {
   createEmptyGrid,
   createGliderGrid,
   createRandomGrid,
+  startSimulation,
+  stopSimulation,
 } = GridSlice.actions;
 
 // To be imported in the index reducer file

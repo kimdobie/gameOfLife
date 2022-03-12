@@ -44,7 +44,11 @@ const GridResizeGrid = (): ReactElement => {
             data-testid='floatingInputCols'
           />
         </FloatingLabelStyled>
-        <Button variant='secondary' onClick={handleGridSizeChange}>
+        <Button
+          variant='secondary'
+          onClick={handleGridSizeChange}
+          id='changeGridSizeButton'
+        >
           Change grid
         </Button>
       </div>

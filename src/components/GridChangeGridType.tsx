@@ -9,6 +9,8 @@ import {
   createGliderGrid,
 } from '../redux/reducers/gridReducer';
 
+import { setRunning } from '../js/startGenerations';
+
 type GridType = 'empty' | 'random' | 'glider' | '';
 
 const StyledButton = styled(Button)`
@@ -20,6 +22,7 @@ const GridChangeGridType = (): ReactElement => {
   const [gridType, setGridType] = useState<GridType>('');
 
   const setGrid = (value: GridType) => {
+    setRunning(false);
     switch (value) {
       case 'empty':
         dispatch(createEmptyGrid());
@@ -45,6 +48,7 @@ const GridChangeGridType = (): ReactElement => {
           aria-label='Default select example'
           onChange={(e) => handleChange(e.target.value as GridType)}
           value={gridType}
+          id='ChangeGridTypeSelect'
         >
           <option value=''>Change grid to:</option>
           <option value='empty'>Empty</option>
@@ -52,7 +56,10 @@ const GridChangeGridType = (): ReactElement => {
           <option value='glider'>Glider</option>
         </Form.Select>
         {gridType !== '' ? (
-          <StyledButton onClick={() => setGrid(gridType)}>
+          <StyledButton
+            onClick={() => setGrid(gridType)}
+            id='ResetGridTypeButton'
+          >
             Reset grid type
           </StyledButton>
         ) : null}
