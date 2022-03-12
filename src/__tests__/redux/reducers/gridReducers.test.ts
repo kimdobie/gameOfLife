@@ -21,6 +21,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     };
     expect(reducer(previousState, nextGeneration())).toEqual({
       grid: [
@@ -32,6 +33,7 @@ describe('gridReducer tests', () => {
       generation: 2,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     });
   });
 
@@ -44,6 +46,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     };
     expect(reducer(previousState, flipCell({ row: 0, column: 1 }))).toEqual({
       grid: [
@@ -53,6 +56,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     });
   });
 
@@ -65,6 +69,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     };
     expect(reducer(previousState, resizeGrid({ rows: 4, columns: 4 }))).toEqual(
       {
@@ -77,6 +82,7 @@ describe('gridReducer tests', () => {
         generation: 1,
         gridCellSize: 10,
         genTimeSeconds: 0.25,
+        isRunning: false,
       }
     );
   });
@@ -90,6 +96,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     };
     expect(reducer(previousState, createEmptyGrid())).toEqual({
       grid: [
@@ -99,6 +106,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     });
   });
 
@@ -113,6 +121,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     };
     const newGrid = reducer(previousState, createRandomGrid()).grid;
     expect(newGrid.flat().includes(1)).toBe(true);
@@ -129,6 +138,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     };
     expect(reducer(previousState, createGliderGrid())).toEqual({
       grid: [
@@ -140,6 +150,7 @@ describe('gridReducer tests', () => {
       generation: 1,
       gridCellSize: 10,
       genTimeSeconds: 0.25,
+      isRunning: false,
     });
   });
 });

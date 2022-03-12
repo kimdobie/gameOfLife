@@ -103,6 +103,15 @@ describe('My First Test', () => {
     cy.get('[data-testid="nextButton"]').should('exist');
     cy.get('[data-testid="stopButton"]').should('not.exist');
   });
+  it('change in grid type stops simulation and changes the grid', () => {
+    setSmallGridSize();
+    cy.get('[data-testid="startButton"]').click();
+    cy.get('[data-testid="generation"]').contains('10');
+    cy.get('[data-life="alive"]').should('have.length', 0);
+    cy.get('#ChangeGridTypeSelect').select('random');
+    cy.get('[data-life="alive"]').should('not.have.length', 0);
+    cy.get('[data-testid="generation"]').contains('1');
+  });
 });
 /*
 
