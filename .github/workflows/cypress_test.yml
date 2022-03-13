@@ -14,8 +14,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node:version: '14'
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
       - name: Cypress run
         uses: cypress-io/github-action@v2.9.7
         with:
@@ -23,8 +23,6 @@ jobs:
           start: npm start
           wait-on: http://localhost:3000
           wait-on-timeout: 120
-          browser: chrome
-          group: 'UI - Chrome'
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
