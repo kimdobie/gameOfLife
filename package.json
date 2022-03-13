@@ -9,8 +9,11 @@
     "node": "14"
   },
   "dependencies": {
+    "@cypress/code-coverage": "^3.9.12",
     "@reduxjs/toolkit": "^1.8.0",
     "bootstrap": "5.1.3",
+    "istanbul-lib-coverage": "^3.2.0",
+    "nyc": "^15.1.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.0",
     "react-dom": "^17.0.2",
@@ -25,6 +28,7 @@
     "Sass is pinned to a lower version otherwise it breaks on the bootstrap build"
   ],
   "devDependencies": {
+    "@cypress/instrument-cra": "^1.4.0",
     "@testing-library/dom": "^8.11.3",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
@@ -71,7 +75,7 @@
   "scripts": {
     "d": "npm i",
     "installDependencies": "npm run d",
-    "start": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
+    "start": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts -r @cypress/instrument-cra start",
     "start:mock": "REACT_APP_USE_MOCKS=true npm run start",
     "buildVersionsPage": "node utils/getVersions.js",
     "// ----------------------------------------------------------1": "",
@@ -107,7 +111,8 @@
     "preinstall": "npx npm-force-resolutions",
     "// ----------------------------------------------------------6": "",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "cypress:coverage": "npx nyc report --reporter=json-summary --report-dir ./coverage/lcov-report"
   },
   "prettier": {
     "singleQuote": true,

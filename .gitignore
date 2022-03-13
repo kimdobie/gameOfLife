@@ -31,6 +31,5 @@ yarn-error.log*
 
 
 #Cypress
-/cypress/integration/2-advanced-examples/**/*
-/cypress/integration/1-getting-started/**/*
 /cypress/videos/**/*
+/.nyc_output/**/*
