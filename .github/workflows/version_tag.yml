@@ -17,10 +17,10 @@ jobs:
       - name: Install dependencies
         run: npm run d
 
-      - name: Tests
+      - name: Unit Tests
         run: npm run test
 
-      - name: Test coverage
+      - name: Test unit coverage
         run: npm run checkCoverage
 
       - name: Linting
