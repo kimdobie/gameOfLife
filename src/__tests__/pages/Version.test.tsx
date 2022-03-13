@@ -4,26 +4,15 @@ import { render, screen, act } from '@testing-library/react';
 import configureStore, { MockStoreEnhanced } from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import fs from 'fs';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 
 import Version from '../../pages/Version';
 
 const mockStore = configureStore([]);
-let mock: MockAdapter;
 
 describe('Version tests', () => {
   let store: MockStoreEnhanced<unknown, unknown>;
   beforeEach(() => {
-    mock = new MockAdapter(axios);
-    mock.onGet('/versions.json').reply(200, {
-      bootstrap: '5.1.3',
-      hello: 'world',
-      featureFlags: 'mydobie/featureFlags#npmbuild2.3.0',
-    });
-    store = mockStore({
-      FeatureFlags: { features: [], persist: false },
-    });
+    store = mockStore({});
   });
   test('Is accessible', async () => {
     await act(async () => {

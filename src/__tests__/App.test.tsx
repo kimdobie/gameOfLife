@@ -4,33 +4,16 @@ import { act, render, screen } from '@testing-library/react';
 import configureStore, { MockStoreEnhanced } from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router'; // see https://medium.com/@antonybudianto/react-router-testing-with-jest-and-enzyme-17294fefd303
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import initialStore from './__fixtures__/initialStore';
 import AppRoutes from '../AppRoutes';
 import App from '../App';
 
 const mockStore = configureStore([]);
-let mock: MockAdapter;
 
 describe('App (router) tests', () => {
   let store: MockStoreEnhanced<unknown, unknown>;
   beforeEach(() => {
-    mock = new MockAdapter(axios);
-    mock.onGet('/versions.json').reply(200, {
-      bootstrap: '5.1.3',
-      hello: 'world',
-      featureFlags: 'mydobie/featureFlags#npmbuild2.3.0',
-    });
-    store = mockStore({
-      dinos: {
-        data: [
-          { id: 'a', text: 'MyDino', selected: true },
-          { id: 'b', text: 'MyOtherDino', selected: true },
-          { id: 'c', text: 'MyThirdDino', selected: false },
-        ],
-      },
-      FeatureFlags: { features: [], persist: false },
-    });
+    store = mockStore(initialStore);
   });
   test('Is accessible', async () => {
     await act(async () => {
@@ -63,16 +46,7 @@ describe('App (router) tests', () => {
 describe('App renders correctly', () => {
   let store: MockStoreEnhanced<unknown, unknown>;
   beforeEach(() => {
-    store = mockStore({
-      dinos: {
-        data: [
-          { id: 'a', text: 'MyDino', selected: true },
-          { id: 'b', text: 'MyOtherDino', selected: true },
-          { id: 'c', text: 'MyThirdDino', selected: false },
-        ],
-      },
-      FeatureFlags: { features: [], persist: false },
-    });
+    store = mockStore(initialStore);
   });
   test('App is accessible', async () => {
     await act(async () => {

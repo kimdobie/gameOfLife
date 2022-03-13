@@ -17,10 +17,10 @@ jobs:
       - name: Install dependencies
         run: npm run d
 
-      - name: Tests
+      - name: Unit Tests
         run: npm run test
 
-      - name: Test coverage
+      - name: Test unit coverage
         run: npm run checkCoverage
 
       - name: Linting
@@ -45,10 +45,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           skip-tag: 'true'
-
-      - name: 'Add version to readme'
-        if: ${{github.event.repository.name}} == 'simple-react-redux-app'
-        run: echo 'UPDATING' && node ./utils/addVersionToReadMe.js
 
       - name: 'Commit new Read Me'
         if: ${{github.event.repository.name}} == 'simple-react-redux-app'

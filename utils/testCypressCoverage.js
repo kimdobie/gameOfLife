@@ -9,16 +9,16 @@ const testCoverage = () => {
   const path = require('path');
   const fs = require('fs');
 
-  const minimumLinesCoveredPercent = 75;
+  const minimumLinesCoveredPercent = 75; // CHANGE ME to the minimum acceptable percentage of lines covered.
 
   try {
     const json = JSON.parse(
       fs.readFileSync(
-        path.resolve(__dirname, '../coverage/coverage-summary.json')
+        path.resolve(__dirname, '../coverage/lcov-report/coverage-summary.json')
       )
     );
 
-    console.log('Coverage Summary: ');
+    console.log('Cypress Coverage Summary: ');
     console.log(json.total);
 
     if (json.total.lines.pct < minimumLinesCoveredPercent) {
@@ -35,7 +35,7 @@ const testCoverage = () => {
     console.log('******************\n');
     console.log('Cannot get test coverage report');
     console.log('\n******************');
-    process.exitCode = 1;
+    process.exitCode = 0;
   }
 };
 
