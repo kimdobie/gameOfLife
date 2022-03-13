@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /// <reference types="cypress" />
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
@@ -22,7 +23,7 @@ module.exports = (/* on, config */) => {
 };
 
 module.exports = (on, config) => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  // eslint-disable-next-line import/no-extraneous-dependencies
   require('@cypress/code-coverage/task')(on, config);
 
   // add other tasks to be registered here
